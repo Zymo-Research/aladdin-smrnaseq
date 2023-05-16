@@ -1,0 +1,113 @@
+intro_text: This report includes summaries of data quality, data processing, and snapshots of results for your small RNAseq study. This report should assist you to get a general picture of the study, to spot any irregularities in the sample or data, and to explore the most significant results in differential gene expression. Please consult <a href='https://github.com/Zymo-Research/service-pipeline-documentation/blob/master/docs/how_to_use_smallRNAseq_report.md' target='_blank'>our small RNAseq report documentation</a> on how to use this report.
+report_comment: If you have any question regarding this report, please contact the Zymo representative who sent you this report.
+
+extra_fn_clean_exts:
+    - _R1
+    - _R2
+
+section_comments:
+    trim_galore_filtered_reads: "Read filtering criteria such as minimum and maximum read length can be found in [Workflow Summary section](#workflow_summary)."
+
+# Order of modules
+module_order:
+    - fastqc:
+        path_filters_exclude:
+            - '*trimmed_fastqc.zip'
+    - Trim_Galore
+    - mirtrace
+#    - mirtop
+    - plot_sample_distance:
+        name: "miRNA sample similarities"
+        info: "The following sample similarities plots were generated from only miRNA transcript data using isomiRs."
+        path_filters:
+            - '*isomiRs_sample_similarity_matrix.tsv'
+            - '*isomiRs_sample_MDS_plot.tsv'
+    - plot_sample_distance:
+        name: "Sample similarities in non-coding genes excluding miRNAs and rRNAs"
+        info: "The following sample similarities plots were generated from tRNA, mitochondrial tRNA, lncRNA, snoRNA, scaRNA, snRNA, and miscRNA gene data using DeSeq2."
+        path_filters:
+            - '*deseq2_sample_similarity_matrix.tsv'
+            - '*deseq2_sample_mds_plot.tsv'
+    - plot_gene_heatmap:
+        name: "miRNA heatmap"
+        info: "The following heatmap was generated from only miRNA data using isomiRs."
+        path_filters: 
+            - '*isomiRs_top_miRNA_gene_heatmap.tsv'
+    - plot_gene_heatmap:
+        name: "Gene heatmap for non-coding genes excluding miRNAs and rRNAs"
+        info: "The following heatmap was generated from tRNA, mitochondrial tRNA, lncRNA, snoRNA, scaRNA, snRNA, and miscRNA gene data using DeSeq2. For simplification, this report treats tRNA gene copies with duplicate sequences as belonging to one gene."
+        path_filters: 
+            - '*deseq2_top_nonmiRNA_gene_heatmap.tsv'
+    - isomiRs:
+        name: "miRNA Differential Expression"
+        info: "The following differential expression analysis was generated using only miRNA data with isomiRs."
+        path_filters:
+            - '*isomiRs_results.tsv'
+    - deseq2_rnatypes:
+        name: "Differential expression of non-coding genes except miRNAs and rRNAs"
+        info: "The following differential expression analysis was generated from tRNA, mitochondrial tRNA, lncRNA, snoRNA, scaRNA, snRNA, and miscRNA gene data using DeSeq2. For simplification, this report treats tRNA gene copies with duplicate sequences as belonging to one gene."
+        path_filters:
+            - '*deseq2_results.tsv'
+
+report_section_order:
+    RNAtypechart:
+        before: mirtrace
+    software_versions:
+        order: -1000
+    workflow_summary:
+        order: -1100
+
+remove_sections:
+    - mirtrace_qc
+    - mirtrace_rna_categories
+#    - mirtop_unique_read_count
+#    - mirtop_mean_read_count
+    - fastqc_sequence_counts
+    - fastqc_per_base_sequence_content
+    - fastqc_per_sequence_gc_content
+    - fastqc_sequence_duplication_levels
+    - fastqc_overrepresented_sequences
+    - fastqc_status_checks
+
+sp:
+    fastqc/zip:
+        fn: '*_fastqc.zip'
+        exclude_fn: '*trimmed_fastqc.zip'
+        shared: True
+
+#sp:
+#    mirtop:
+#        fn: '*mirtop_stats.log'
+
+table_columns_visible:
+    FastQC:
+        percent_duplicates: False
+        percent_gc: False
+    Trim_Galore:
+        percent_trimmed: False
+    miRTrace:
+        perc_miRNA: False
+
+#    mirtop:
+#        read_count: False
+
+table_columns_placement:
+    FastQC:
+        total_sequences: 900
+    Trim_Galore:
+        trimmed_gcperc: 910
+        percent_pass_filter: 920
+#        percent_trimmed: 930
+    Pipeline:
+        perc_miRNA_quantifyrna: 940
+    miRTrace:
+        #perc_miRNA: 950    
+        no_miRNA: 960
+#    mirtop:
+#        ref_miRNA_sum: 970
+#        isomiR_sum: 980
+#        isomiR_perc: 990
+
+#export_plots: true
+
+log_filesize_limit: 50000000
