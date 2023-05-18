@@ -138,10 +138,6 @@ include { bowtie as bowtie_hairpin } from "./processes/bowtie" addParams(
     publish_dir: "${outdir}/bowtie/miRBase_collapsed",
     align_mode: "-a"
 )
-include { bowtie as bowtie_genome } from "./processes/bowtie" addParams(
-    publish_dir: "${outdir}/bowtie/genome",
-    align_mode: "-k 1"
-)
 include { bowtie as bowtie_rnacounts } from "./processes/bowtie" addParams(
     publish_dir: "${outdir}/bowtie/RNAtypecounts",
     align_mode: "-a"
@@ -205,7 +201,6 @@ workflow {
     quantify_rnacounts(bowtie_rnacounts.out.bam.collect(), tximport_deseq.out.tximporttsv, idmaptoRNAtype, rsem.out.rsem_logs.collect())
     mirtop(bowtie_hairpin.out.bam.collect(), make_bowtie_index.out.fasta, mirna_gtf)
     isomirs(mirtop.out.isomir_tsv, check_design.out.checked_design, comparisons.ifEmpty([]))
-    bowtie_genome(trim_galore.out.reads, bt_indices.collect())
     fastq_locations = params.deliver_fastqs ? trim_galore.out.download.map{ "${outdir}/original_fastq/" + it.getName() } : Channel.empty()
     isomirs_locations =  isomirs.out.download.flatten().map{ "${outdir}/isomiRs/" + it.getName() }
     deseq_locations = tximport_deseq.out.download.flatten().map{ "${outdir}/tximport_deseq/" + it.getName()}
