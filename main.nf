@@ -26,8 +26,6 @@ if (params.help){
 if (params.genomes && params.genome && !params.genomes.containsKey(params.genome)) {
     exit 1, "The provided genome '${params.genome}' is not available in the iGenomes file. Currently the available genomes are ${params.genomes.keySet().join(", ")}"
 }
-params.bt_index = params.genome ? params.genomes[ params.genome ].bowtie ?: false : false
-params.bed12 = params.genome ? params.genomes[ params.genome ].bed12 ?: false : false
 params.hairpin = params.genome ? params.genomes[ params.genome ].hairpin ?: false : false
 params.ncRNA_fa = params.genome ? params.genomes[params.genome].ncRNA_fa ?: false : false
 params.ncRNA_fa_bowtie = params.genome ? params.genomes[ params.genome ].ncRNA_fa_bowtie ?: false : false
@@ -76,7 +74,6 @@ ncRNA_fa = setup_channel(params.ncRNA_fa, "RNA Types FASTA file", false, "Quanti
 ncRNA_fa_bowtie = setup_channel(params.ncRNA_fa_bowtie ? "${params.ncRNA_fa_bowtie}*" : false,  "RNA Types Bowtie Index", false, "Alignment and quantification of RNA Types and following steps will be skipped.")
 idmaptoRNAtype = setup_channel(params.idmaptoRNAtype ? "${params.idmaptoRNAtype}" : false, "RNA Types to IDs Map", false, "Quantification of RNA Types and following steps will be skipped.")
 tx2gene = setup_channel(params.tx2gene ? "${params.tx2gene}" : false, "RNA Transcript IDs to Genes Map", false, "Differential Expression of RNA Types and following steps will be skipped.")
-bt_indices = setup_channel(params.bt_index ? "${params.bt_index}*" : false, "bowtie index", false, "alignment against genome will be skipped.")
 mirna_gtf = setup_channel(params.mirna_gtf_path, "miRNA GTF/GFF file", false, "mirtop step will be skipped.")
 design = setup_channel(params.design, "design CSV file", true, "")
 comparisons = setup_channel(params.comparisons, "comparison CSV file", false, "all pairwise comparisons will be carried out.")

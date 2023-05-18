@@ -34,18 +34,6 @@
                     "description": "Reference genome used to align reads. Please contact us to add more species.",
 		            "enum": ["GRCh38", "Rnor_6.0"]
                 },
-                "igenomes_base": {
-                    "type": "string",
-                    "description": "Directory / URL base for iGenomes references.",
-                    "hidden": true,
-		            "default": "s3://zymo-igenomes/igenomes"
-                },
-		        "igenomes_zymo": {
-		            "type": "string",
-		            "description": "Directory / URL base for Zymo genomes references",
-		            "hidden": true,
-		            "default": "s3://zymo-igenomes/zymo/"
-		        },
 		        "save_reference": {
 		            "type": "boolean",
 		            "description": "Save reference genome files",
