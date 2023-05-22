@@ -112,10 +112,6 @@ Please note the following requirements for the design CSV file:
 Protocol for constructing smRNA-seq libraries. Note that trimming parameters and 3' adapter sequence are pre-defined with a specified protocol.
 Default: "illumina"
 
-```bash
---protocol [one protocol listed in the table below]
-```
-
 | Protocol      | Library Prep Kit                        | Trimming Parameter                   | 3' Adapter Sequence   |
 | :------------ | :-------------------------------------- | :----------------------------------- | :-------------------  |
 | zymo          | Zymo miRNA kit                          | clip_R1 = 1; three_prime_clip_R1 = 0 | TGGAATTCTCGGGTGCCAAGG |
@@ -132,11 +128,7 @@ The pipeline config files come bundled with paths to the iGenomes reference inde
 ### `--genome`
 The reference genome to use of the analysis, needs to be one of the genome specified in the [config file](../conf/igenomes.config). This option is required. 
 
-```bash
---genome 'GRCh38'
-```
-
-> Only 'GRCh38' and 'Rnor_6.0' have been tested for now.
+> Only 'Homo_sapiens(GRCh38)' and 'Rattus_norvegicus(Rnor_6.0)' have been tested for now.
 
 Note that you can use the same configuration setup to save sets of reference files for your own use, even if they are not part of the resources already set up. See the [Nextflow documentation](https://www.nextflow.io/docs/latest/config.html) for instructions on where to save such a file.
 

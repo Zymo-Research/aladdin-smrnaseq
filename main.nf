@@ -198,10 +198,6 @@ workflow {
     quantify_rnacounts(bowtie_rnacounts.out.bam.collect(), tximport_deseq.out.tximporttsv, idmaptoRNAtype, rsem.out.rsem_logs.collect())
     mirtop(bowtie_hairpin.out.bam.collect(), make_bowtie_index.out.fasta, mirna_gtf)
     isomirs(mirtop.out.isomir_tsv, check_design.out.checked_design, comparisons.ifEmpty([]))
-    fastq_locations = params.deliver_fastqs ? trim_galore.out.download.map{ "${outdir}/original_fastq/" + it.getName() } : Channel.empty()
-    isomirs_locations =  isomirs.out.download.flatten().map{ "${outdir}/isomiRs/" + it.getName() }
-    deseq_locations = tximport_deseq.out.download.flatten().map{ "${outdir}/tximport_deseq/" + it.getName()}
-    locations = isomirs_locations.mix(fastq_locations, deseq_locations).collectFile(name: "${outdir}/download_data/file_locations.txt", newLine: true)
     software_versions()
     multiqc(multiqc_config, \
             fastqc.out.report.collect().ifEmpty([]), \
@@ -213,8 +209,10 @@ workflow {
             software_versions.out.report.collect(), \
             summary_header, \
             workflow_summary_to_report)
+    isomirs_locations =  isomirs.out.download.flatten().map{ "${outdir}/isomiRs/" + it.getName() }
+    deseq_locations = tximport_deseq.out.download.flatten().map{ "${outdir}/tximport_deseq/" + it.getName()}
     report_locations = multiqc.out.report.map{ "${outdir}/MultiQC/" + it.getName() }
-    aladdin_locations = locations.mix(report_locations).collectFile(name: "${outdir}/download_data/aladdin_file_locations.txt", newLine: true)
+    aladdin_locations = isomirs_locations.mix(deseq_locations, report_locations).collectFile(name: "${outdir}/download_data/file_locations.txt", newLine: true)
     summarize_downloads(aladdin_locations, check_design.out.checked_design)
 }
 

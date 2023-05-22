@@ -32,7 +32,7 @@
                 "genome": {
                     "type": "string",
                     "description": "Reference genome used to align reads. Please contact us to add more species.",
-		            "enum": ["GRCh38", "Rnor_6.0"]
+		            "enum": ["Homo_sapiens(GRCh38)", "Rattus_norvegicus(Rnor_6.0)", "Mus_musculus(GRCm38)"]
                 },
 		        "save_reference": {
 		            "type": "boolean",

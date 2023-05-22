@@ -33,7 +33,7 @@ It is preferable that you run the pipeline using [Aladdin Bioinformatics Platfor
 ``` bash
 nextflow run Zymo-Research/aladdin-smrnaseq \
     --design "<design CSV file>" \
-    --genome GRCh38 \
+    --genome 'Homo_sapiens(GRCh38)' \
     --protocol zymo \
     -profile awsbatch \
     -work-dir "<work dir on S3>" \
@@ -42,7 +42,7 @@ nextflow run Zymo-Research/aladdin-smrnaseq \
     --name "my_analysis" \
     -r "0.0.1" \
 ```
-1. The options `-design` and `--genome` are required.
+1. The options `-design` and `--genome` are required. Remember to enclose `--genome` parameter value in () because it contains special characters.
 2. The options `-profile`, `-work-dir`, `--outdir`, and `--awsqueue` are required only when running pipelines on AWS Batch, but are highly recommended.
 3. The option `-r` helps pin workflow to a specific release on GitHub.
 5. The option `--name` will add a custom title to the report.
@@ -60,7 +60,7 @@ The header line must be present and cannot be changed. Sample labels and group n
 ``` bash
 nextflow run Zymo-Research/aladdin-smrnaseq \
     --design "<design CSV file>" \
-    --genome GRCh38 \
+    --genome 'Homo_sapiens(GRCh38)' \
     --protocol zymo \
     -profile docker \
     --outdir "<output dir on S3>" \
