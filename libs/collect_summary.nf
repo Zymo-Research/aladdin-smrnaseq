@@ -23,7 +23,6 @@ def collect_summary(params, workflow) {
     summary['Min Trimmed Length']    = params.min_length
     summary['Max Trimmed Length']    = !params.max_length ? "None" : params.max_length
     summary['miRBase hairpin']       = params.hairpin
-    summary['Bowtie Index for Ref']  = params.bt_index
     summary['Save Reference']        = params.save_reference ? 'Yes' : 'No'
     summary['miRTrace species']      = params.mirtrace_species
     summary['Group Comparisons']     = params.comparisons
