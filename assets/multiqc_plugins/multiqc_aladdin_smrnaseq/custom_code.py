@@ -14,13 +14,13 @@ from multiqc.utils import report, util_functions, config
 log = logging.getLogger('multiqc')
 
 # Save this plugin's version number (defined in setup.py) to the MultiQC config
-config.multiqc_zymo_version = get_distribution("multiqc_zymo").version
+config.multiqc_aladdin_smrnaseq_version = get_distribution("multiqc_aladdin_smrnaseq").version
 
 # Add default config options that can be overriden by user config
 def plugin_before_config():
     
     # Use the zymo template by default
-    config.template = 'zymo'
+    config.template = 'aladdin'
     
 # Add additional config options
 def plugin_execution_start():
@@ -35,7 +35,7 @@ def plugin_execution_start():
     if config.kwargs.get('disable_plugin', False) is True:
         return None
 
-    log.info("Running smrnaseq MultiQC Plugins v{}".format(config.multiqc_zymo_version))
+    log.info("Running smrnaseq MultiQC Plugins v{}".format(config.multiqc_aladdin_smrnaseq_version))
 
     # Add to the search patterns used by modules
     if 'plot_sample_distance/heatmap' not in config.sp:
