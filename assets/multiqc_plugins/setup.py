@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 """
-Setup code for Zymo Research MultiQC plugin.
+Setup code for Aladdin smRNAseq MultiQC plugin.
 For more information about MultiQC, see http://multiqc.info
 """
 
@@ -17,7 +17,7 @@ setup(
     install_requires = ['multiqc==1.9'],
     entry_points = {
         'multiqc.templates.v1': [
-            'zymo = multiqc_aladdin_smrnaseq.templates.zymo'
+            'aladdin = multiqc_aladdin_smrnaseq.templates.aladdin'
         ],
         'multiqc.modules.v1': [
             'plot_sample_distance = multiqc_aladdin_smrnaseq.modules.plot_sample_distance:MultiqcModule',

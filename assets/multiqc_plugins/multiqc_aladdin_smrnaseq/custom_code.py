@@ -19,7 +19,7 @@ config.multiqc_aladdin_smrnaseq_version = get_distribution("multiqc_aladdin_smrn
 # Add default config options that can be overriden by user config
 def plugin_before_config():
     
-    # Use the zymo template by default
+    # Use the aladdin template by default
     config.template = 'aladdin'
     
 # Add additional config options
