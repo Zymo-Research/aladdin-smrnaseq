@@ -8,6 +8,7 @@ This pipeline was adapted from [nfcore/smrnaseq](https://github.com/nf-core/smrn
 * The library composition analysis now includes other small RNA types in addition to rRNA, tRNA, miRNAs
 * Added differential expression analysis for genes of other small RNA types in addition to miRNAs
 * Numerous report improvements including custom MultiQC modules
+* Upgrade to Nextflow DSL2
 
 The pipeline is built using Nextflow, a workflow tool to run tasks across multiple compute infrastructures in a very portable manner. It comes with docker containers making installation trivial and results highly reproducible.
 
