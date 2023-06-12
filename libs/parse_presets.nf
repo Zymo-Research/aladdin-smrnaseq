@@ -1,6 +1,6 @@
 def parse_presets(preset) {
     // Protocol presets
-    presets = [ "zymo"     : [ "clip_R1":1, "three_prime_clip_R1":0, "adapter":"TGGAATTCTCGGGTGCCAAGG", "protocol":"illumina" ], 
+    presets = [ "Zymo-Seq_miRNA" : [ "clip_R1":1, "three_prime_clip_R1":0, "adapter":"TGGAATTCTCGGGTGCCAAGG", "protocol":"illumina" ], 
                 "illumina" : [ "clip_R1":0, "three_prime_clip_R1":0, "adapter":"TGGAATTCTCGGGTGCCAAGG", "protocol":"illumina" ],
                 "nextflex" : [ "clip_R1":4, "three_prime_clip_R1":4, "adapter":"TGGAATTCTCGGGTGCCAAGG", "protocol":"nextflex" ],
                 "qiaseq"   : [ "clip_R1":0, "three_prime_clip_R1":0, "adapter":"AACTGTAGGCACCATCAAT", "protocol":"qiaseq" ],

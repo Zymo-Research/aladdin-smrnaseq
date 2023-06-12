@@ -77,7 +77,7 @@
                 "protocol": {
                     "type": "string",
                     "description": "Library prep protocol/kit used. If your kit is not listed, please contact us to request help.",
-		            "enum": ["zymo", "illumina", "nextflex", "qiaseq", "cats"]
+		            "enum": ["Zymo-Seq_miRNA"]
                 },
                 "trim_nextseq": {
                     "type": "integer",

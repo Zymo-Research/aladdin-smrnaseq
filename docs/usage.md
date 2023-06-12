@@ -114,7 +114,7 @@ Default: "illumina"
 
 | Protocol      | Library Prep Kit                        | Trimming Parameter                   | 3' Adapter Sequence   |
 | :------------ | :-------------------------------------- | :----------------------------------- | :-------------------  |
-| zymo          | Zymo miRNA kit                          | clip_R1 = 1; three_prime_clip_R1 = 0 | TGGAATTCTCGGGTGCCAAGG |
+| Zymo-Seq_miRNA| Zymo-Seq miRNA library kit              | clip_R1 = 1; three_prime_clip_R1 = 0 | TGGAATTCTCGGGTGCCAAGG |
 | illumina      | Illumina TruSeq Small RNA               | clip_R1 = 0; three_prime_clip_R1 = 0 | TGGAATTCTCGGGTGCCAAGG |
 | nextflex      | BIOO SCIENTIFIC  NEXTFLEX Small RNA-Seq | clip_R1 = 4; three_prime_clip_R1 = 4 | TGGAATTCTCGGGTGCCAAGG |
 | qiaseq        | QIAGEN QIAseq miRNA                     | clip_R1 = 0; three_prime_clip_R1 = 0 | AACTGTAGGCACCATCAAT   |
