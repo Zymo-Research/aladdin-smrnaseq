@@ -11,7 +11,7 @@ def help_message() {
     Mandatory arguments:
       --design                      Path to a CSV file with sample labels, sample groupings and input FASTQ file locations
       --genome                      Name of reference genome. See conf/igenomes.conf for list of supported genomes. Artificial polymers are also supported with option "artificial", which skips alignments and subsequent steps.
-      --protocol                    Library preparation protocol. Default: "illumina". Can be set as "illumina", "nextflex", "qiaseq", "cats", or "zymo"
+      --protocol                    Library preparation protocol. Can be set as "illumina", "nextflex", "qiaseq", "cats", or "Zymo-Seq_miRNA"
 
     References
       --save_reference              Save the generated reference files the the Results directory. Default: false
