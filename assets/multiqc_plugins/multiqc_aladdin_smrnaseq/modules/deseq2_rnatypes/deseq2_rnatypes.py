@@ -285,8 +285,7 @@ class MultiqcModule(BaseMultiqcModule):
                 # Add link to the gene names
                 linklist = []
                 for index in genes.index:
-                    #Use database-specific patterns to assign url from database
-                    if (link_prefix is not None) and (re.search("ENS[a-zA-Z]+G00000", index) or re.search("ENSG00000", index)):
+                    if link_prefix is not None:
                         gene_link = link_prefix+index+'" target="_blank">'+index+"</a>"
                     else:
                         gene_link = index
