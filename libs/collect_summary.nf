@@ -9,12 +9,12 @@ def collect_summary(params, workflow) {
         run_name = workflow.runName
     }
     
-    presets = [ "zymo"     : [ "clip_R1":1, "three_prime_clip_R1":0, "adapter":"TGGAATTCTCGGGTGCCAAGG", "protocol":"illumina" ],
-                "illumina" : [ "clip_R1":0, "three_prime_clip_R1":0, "adapter":"TGGAATTCTCGGGTGCCAAGG", "protocol":"illumina" ],
-                "nextflex" : [ "clip_R1":4, "three_prime_clip_R1":4, "adapter":"TGGAATTCTCGGGTGCCAAGG", "protocol":"nextflex" ],
-                "qiaseq"   : [ "clip_R1":0, "three_prime_clip_R1":0, "adapter":"AACTGTAGGCACCATCAAT", "protocol":"qiaseq" ],
-                "cats"     : [ "clip_R1":3, "three_prime_clip_R1":0, "adapter":"AAAAAAAA", "protocol":"cats" ]
-    ]
+    presets = [ "Zymo-Seq_miRNA" : [ "clip_R1":1, "three_prime_clip_R1":0, "adapter":"TGGAATTCTCGGGTGCCAAGG", "protocol":"illumina" ],
+                "illumina"       : [ "clip_R1":0, "three_prime_clip_R1":0, "adapter":"TGGAATTCTCGGGTGCCAAGG", "protocol":"illumina" ],
+                "nextflex"       : [ "clip_R1":4, "three_prime_clip_R1":4, "adapter":"TGGAATTCTCGGGTGCCAAGG", "protocol":"nextflex" ],
+                "qiaseq"         : [ "clip_R1":0, "three_prime_clip_R1":0, "adapter":"AACTGTAGGCACCATCAAT", "protocol":"qiaseq" ],
+                "cats"           : [ "clip_R1":3, "three_prime_clip_R1":0, "adapter":"AAAAAAAA", "protocol":"cats" ]
+    ]
 
     summary['Run Name']              = run_name ?: workflow.runName
     summary['Design']                = params.design
