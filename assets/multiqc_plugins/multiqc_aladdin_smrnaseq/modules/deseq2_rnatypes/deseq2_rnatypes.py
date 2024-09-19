@@ -38,6 +38,9 @@ class MultiqcModule(BaseMultiqcModule):
 
         # Get the pvalue cutoff from config
         alpha = getattr(config, "isomiRs_alpha", 0.05)
+        link_prefix = getattr(config, "ensembl_link_prefix", None)
+        if link_prefix is not None and re.search("ENS[a-zA-Z]*G00000", index):
+            link_prefix = '<a href=\"https://{}'.format(link_prefix)
         # Initialize the data dict
         self.deseq_results = dict()
         # Find the data files
@@ -282,13 +285,11 @@ class MultiqcModule(BaseMultiqcModule):
                 # Add link to the gene names
                 linklist = []
                 for index in genes.index:
-                    #Use database-specific patterns to assign url from database
-                    if re.search("ENSG00000", index):
-                        link_prefix = '<a href=https://uswest.ensembl.org/Homo_sapiens/Gene/Summary?db=core;g='+index+ \
-                        '>'+index+"</a>"
+                    if link_prefix is not None:
+                        gene_link = link_prefix+index+'" target="_blank">'+index+"</a>"
                     else:
-                        link_prefix = index
-                    linklist.append(link_prefix)
+                        gene_link = index
+                    linklist.append(gene_link)
                 genes["gene_link"] = linklist
                 genes = genes[["gene_link", "gene_name", "baseMean", "log2FoldChange", "padj"]]
                 genes = genes.to_dict("records")

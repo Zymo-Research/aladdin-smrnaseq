@@ -37,7 +37,9 @@ class MultiqcModule(BaseMultiqcModule):
 
         # Get the pvalue cutoff from config
         alpha = getattr(config, "isomiRs_alpha", 0.05)
-        link_prefix = getattr(config, "gene_link_prefix", '<a href=\"http://www.mirbase.org/cgi-bin/mirna_entry.pl?acc=')
+        link_prefix = getattr(config, "mirbase_link_prefix", None)
+        if link_prefix is not None:
+            link_prefix = '<a href=\"https://{}'.format(link_prefix)
 
         # Initialize the data dict
         self.isomirs_results = dict()

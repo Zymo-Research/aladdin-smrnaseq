@@ -15,15 +15,15 @@ dependencies:
   - r-matrixstats=0.57.0=r40hcdcec82_0
   - r-dplyr=1.0.2=r40h0357c0b_0 # New dplyr version causes isomiRs bug, see bioconda-recipes issue #26558
   - r-ggplot2=3.3.2=r40h6115d3f_0
-  - pandas=1.2.2=py37hdc94413_0
-  - boto3=1.17.10=pyhd8ed1ab_0
+  - pandas=2.0.3=py38h01efb38_1
+  - boto3=1.34.97=pyhd8ed1ab_0
   - matplotlib=3.3.2=0
   - xorg-libxaw=1.0.14=h7f98852_1 # Needed for jpeg function in R
   ## bioconda packages
   - fastqc=0.11.9=0
   - trim-galore=0.6.6=0
   - samtools=1.16.1=h6899075_0
-  - bowtie=1.3.0=py37h9a982cc_1
+  - bowtie=1.3.1=py38h70e88c0_6
   - multiqc=1.9=py_1
   - mirtop=0.4.23=pyh864c0ab_1
   - seqcluster=1.2.7=pyh864c0ab_1
@@ -37,4 +37,4 @@ dependencies:
   - bioconductor-tximport=1.18.0=r40hdfd78af_1
   - bioconductor-deseq2=1.30.1=r40h399db7b_0
   - bioawk=1.0=hed695b0_5
-  - rseqc=4.0.0=py37hf01694f_0
+  - rseqc=5.0.3=py38he5da3d1_1
