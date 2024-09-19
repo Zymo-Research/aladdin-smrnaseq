@@ -39,7 +39,7 @@ class MultiqcModule(BaseMultiqcModule):
         # Get the pvalue cutoff from config
         alpha = getattr(config, "isomiRs_alpha", 0.05)
         link_prefix = getattr(config, "ensembl_link_prefix", None)
-        if link_prefix is not None:
+        if link_prefix is not None and re.search("ENS[a-zA-Z]*G00000", index):
             link_prefix = '<a href=\"https://{}'.format(link_prefix)
         # Initialize the data dict
         self.deseq_results = dict()
