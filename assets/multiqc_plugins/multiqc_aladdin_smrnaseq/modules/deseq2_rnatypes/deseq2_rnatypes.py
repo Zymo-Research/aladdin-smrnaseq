@@ -39,7 +39,7 @@ class MultiqcModule(BaseMultiqcModule):
         # Get the pvalue cutoff from config
         alpha = getattr(config, "isomiRs_alpha", 0.05)
         link_prefix = getattr(config, "ensembl_link_prefix", None)
-        if link_prefix is not None and re.search("ENS[a-zA-Z]*G00000", index):
+        if link_prefix is not None:
             link_prefix = '<a href=\"https://{}'.format(link_prefix)
         # Initialize the data dict
         self.deseq_results = dict()
@@ -285,7 +285,7 @@ class MultiqcModule(BaseMultiqcModule):
                 # Add link to the gene names
                 linklist = []
                 for index in genes.index:
-                    if link_prefix is not None:
+                    if link_prefix is not None and re.search("ENS[a-zA-Z]*G00000", index):
                         gene_link = link_prefix+index+'" target="_blank">'+index+"</a>"
                     else:
                         gene_link = index
