@@ -31,6 +31,8 @@ params.ncRNA_fa = params.genome ? params.genomes[params.genome].ncRNA_fa ?: fals
 params.ncRNA_fa_bowtie = params.genome ? params.genomes[ params.genome ].ncRNA_fa_bowtie ?: false : false
 params.idmaptoRNAtype = params.genome ? params.genomes[ params.genome ].idmaptoRNAtype ?: false : false
 params.tx2gene = params.genome ? params.genomes[ params.genome ].tx2gene ?: false : false
+params.ensembl_web = params.genomes[ params.genome ].ensembl_web ?: false
+params.mirbase_web = params.genomes[ params.genome ].mirbase_web ?: false
 params.mirtrace_species = params.genome ? params.genomes[ params.genome ].mirtrace_species ?: false : false
 if( !params.mirtrace_species && params.genome != "artificial" ) {
     exit 1, "Reference species for miRTrace is not defined."
@@ -170,6 +172,8 @@ include { multiqc } from "./processes/multiqc" addParams(
     publish_dir: "${outdir}/MultiQC",
     skip_multiqc: params.skip_multiqc,
     run_name : summary["Run Name"],
+    ensembl_web : params.ensembl_web,
+    mirbase_web : params.mirbase_web,
     isomirs_fdr: params.isomirs_fdr
 )
 include { summarize_downloads } from "./processes/summarize_downloads" addParams(
